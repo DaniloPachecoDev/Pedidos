@@ -31,6 +31,7 @@ type
     procedure Produtos1Click(Sender: TObject);
     procedure PedidodeVenda1Click(Sender: TObject);
     procedure RelatriodeVenda1Click(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,6 +98,11 @@ begin
     finally
       FreeAndNil(FrmRelPedidos);
     end;
+end;
+
+procedure TFrmPrincipal.Sair1Click(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

@@ -38,6 +38,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Sair1: TMenuItem
         Caption = 'Sair'
+        OnClick = Sair1Click
       end
     end
     object Movimento1: TMenuItem
