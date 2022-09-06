@@ -14,7 +14,6 @@ type TPedidoController = class
   public
     FDaoPedido: TDAOPedido;
     procedure Pesquisa(pNumero: String);
-    //procedure CarregaProduto(pPesquisa: String);
     function Inserir(oPedido: TPedido; var sErro: String): Boolean;
     function Alterar(oPedido: TPedido; var sErro: String): Boolean;
     function Excluir(iCodigo: Integer; var sErro: String): Boolean;
@@ -27,10 +26,8 @@ type TItemPedidoController = class
   public
     FDaoItemPedido: TDAOItemPedido;
     procedure Pesquisa(pNome: String);
-    //procedure CarregaProduto(pPesquisa: String);
     function Inserir(oItemPedido: TItemPedido; var sErro: String): Boolean;
     function Alterar(oItemPedido: TItemPedido; var sErro: String): Boolean;
-    //function Excluir(iCodigo: Integer; var sErro: String): Boolean;
 end;
 
 type TPagamentoPedidoController = class
@@ -40,10 +37,8 @@ type TPagamentoPedidoController = class
   public
     FDaoPagamentoPedido: TDAOPagamentoPedido;
     procedure Pesquisa(pNome: String);
-    //procedure CarregaProduto(pPesquisa: String);
     function Inserir(oPagamentoPedido: TPagamentoPedido; var sErro: String): Boolean;
     function Alterar(oPagamentoPedido: TPagamentoPedido; var sErro: String): Boolean;
-    //function Excluir(iCodigo: Integer; var sErro: String): Boolean;
 end;
 
 
@@ -86,7 +81,7 @@ end;
 
 constructor TItemPedidoController.Create;
 begin
-  inherited Create; //FDaoItemPedido := TDAOItemPedido.Create;
+  inherited Create;
 end;
 
 destructor TItemPedidoController.Destroy;
@@ -107,7 +102,7 @@ end;
 
 procedure TItemPedidoController.Pesquisa(pNome: String);
 begin
-  //
+
 end;
 
 { TPagamentoPedidoController }
@@ -135,7 +130,7 @@ end;
 
 procedure TPagamentoPedidoController.Pesquisa(pNome: String);
 begin
-//
+
 end;
 
 end.
