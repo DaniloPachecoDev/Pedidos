@@ -374,6 +374,7 @@ begin
       LabEdtCnpjCpf.SetFocus;
     end;
   end;
+  rdgTipoPessoa.SetFocus;
   inherited;
 end;
 
