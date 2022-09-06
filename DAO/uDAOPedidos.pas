@@ -14,7 +14,6 @@ type
       destructor Destroy; override;
 
       function GetID(aTabela: String): Integer;
-      //function CarregaCliente(pPesquisa: String): TPedido;
       function Inserir(pPedido: TPedido): Boolean;
       function Alterar(pPedido: TPedido): Boolean;
       function Excluir(pIDPedido: Integer): Boolean;
@@ -23,32 +22,24 @@ type
 type
   TDAOItemPedido = class
     private
-      FQueryItemPedido: TFDQuery;
+       //
     public
       constructor Create;
       destructor Destroy; override;
 
-      //function GetID(aTabela: String): Integer;
-      //function Pesquisa(pNome: String): TItemPedido;
-      //function CarregaItemPedido(pPesquisa: String): TItemPedido;
       function Inserir(pItemPedido: TItemPedido): Boolean;
       function Alterar(pItemPedido: TItemPedido): Boolean;
-      //function Excluir(pIDCliente: Integer): Boolean;
   end;
 type
   TDAOPagamentoPedido = class
     private
-      FQueryItemPedido: TFDQuery;
+      //
     public
       constructor Create;
       destructor Destroy; override;
 
-      //function GetID(aTabela: String): Integer;
-      //function Pesquisa(pNome: String): TPagamentoPedido;
-      //function CarregaPagamento(pPesquisa: String): TPagamentoPedido;
       function Inserir(pPagPedido: TPagamentoPedido): Boolean;
       function Alterar(pPagPedido: TPagamentoPedido): Boolean;
-      //function Excluir(pIDCliente: Integer): Boolean;
   end;
 
 implementation
