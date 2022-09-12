@@ -111,7 +111,7 @@ type
     procedure PreencheAuxiliarPagamento(pCodigo: Integer);
     procedure ExecutaProcedureCliente(pValor: Double; pCodCliente: Integer);
     procedure ChamaRelatorioPedido(pCodPedido: Integer);
-    procedure VerificaLimiteCliente(pIDCliente: Integer);
+    procedure VerificaLimiteCliente(pIDCliente: Integer; out pTemLimite: Boolean);
   public
     pTipOperacao: Integer;
     pProxCodigo: String;
@@ -441,6 +441,7 @@ var
   CrudPagamento: TPagamentoPedido;
   PagController: TPagamentoPedidoController;
   xErro: String;
+  xTemLimite: Boolean;
   procedure Habilita;
   begin
     BtnNovo.Enabled     := not(dsPadrao.DataSet.State in [dsInsert, dsEdit]);
@@ -536,7 +537,9 @@ begin
         end;
         uDAOFDConn.DAOFDConn.FDConnection.Transaction.Commit;
         ChamaRelatorioPedido(Crud.ID);
-        VerificaLimiteCliente(Crud.Cod_Cliente);
+        VerificaLimiteCliente(Crud.Cod_Cliente, xTemLimite);
+        if not xTemLimite then
+          ShowMessage('Cliente: '+dblcbxCliente.Text+' não possui mais Limite');
       except
         uDAOFDConn.DAOFDConn.FDConnection.Transaction.Rollback;
         raise Exception.Create('Erro na inclusão ou alteração do PEDIDO.');
@@ -588,7 +591,9 @@ begin
   end;
 end;
 
-procedure TFrmPedidos.VerificaLimiteCliente(pIDCliente: Integer);
+procedure TFrmPedidos.VerificaLimiteCliente(pIDCliente: Integer; out pTemLimite: Boolean);
+var
+  Qry: TFDQuery;
 begin
   TThread.CreateAnonymousThread(
     procedure
@@ -619,6 +624,21 @@ begin
        end;
     end
   ).Start;
+
+  Qry := TFDQuery.Create(nil);
+  pTemLimite := True;
+  try
+     Qry.Connection := uDAOFDConn.DAOFDConn.FDConnection;
+     Qry.Close;
+     Qry.SQL.Clear;
+     Qry.SQL.Text := 'SELECT LIMITE FROM CLIENTE '+
+                     ' WHERE CLIENTE.ID = '+IntToStr(pIDCliente);
+     Qry.Open;
+     if Qry.FieldByName('LIMITE').AsFloat <= 0 then
+       pTemLimite := False;
+  finally
+    FreeAndNil(Qry);
+  end;
 end;
 
 end.

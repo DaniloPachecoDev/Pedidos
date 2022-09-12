@@ -140,8 +140,8 @@ inherited FrmClientes: TFrmClientes
           TabOrder = 7
         end
         object LabEdtLimite: TLabeledEdit
-          Left = 212
-          Top = 237
+          Left = 211
+          Top = 239
           Width = 134
           Height = 21
           EditLabel.Width = 80
@@ -149,6 +149,7 @@ inherited FrmClientes: TFrmClientes
           EditLabel.Caption = 'Limite de Cr'#233'dito'
           TabOrder = 8
           OnChange = LabEdtLimiteChange
+          OnExit = LabEdtLimiteExit
         end
         object LabEdtNumero: TLabeledEdit
           Left = 17

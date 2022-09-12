@@ -38,6 +38,7 @@ type
     procedure DBGridDadosDblClick(Sender: TObject);
     procedure LabEdtCEPExit(Sender: TObject);
     procedure LabEdtCnpjCpfExit(Sender: TObject);
+    procedure LabEdtLimiteExit(Sender: TObject);
     procedure LabEdtLimiteChange(Sender: TObject);
   private
     FOperacao: TOperacao;
@@ -382,8 +383,23 @@ procedure TFrmClientes.LabEdtLimiteChange(Sender: TObject);
 begin
   inherited;
   LabEdtLimite.Font.Color := clWindowText;
-  if StrToFloat(LabEdtLimite.Text) < 0 then
+  if StrToFloat(LabEdtLimite.Text) <= 0 then
+  begin
     LabEdtLimite.Font.Color := clRed;
+  end;
+
+end;
+
+procedure TFrmClientes.LabEdtLimiteExit(Sender: TObject);
+begin
+  inherited;
+  LabEdtLimite.Font.Color := clWindowText;
+  if StrToFloat(LabEdtLimite.Text) <= 0 then
+  begin
+    LabEdtLimite.Font.Color := clRed;
+    ShowMessage('Limite menor ou igual a 0');
+    LabEdtLimite.SetFocus;
+  end;
 end;
 
 procedure TFrmClientes.CarregaCampos;
